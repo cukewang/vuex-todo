@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <todos></todos>
   </div>
 </template>
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
 
-#nav
-  padding 30px
-  a
-    font-weight bold
-    color #2c3e50
-    &.router-link-exact-active
-      color #42b983
+<script>
+import Todos from './components/Todos'
+import store from './store/index'
+export default {
+  name: 'app',
+  store,
+  components: {
+    Todos
+  }
+}
+</script>
+
+<style lang="stylus">
+body
+  background-color: #cccccc
+#app
+  width: 1100px
+  margin: 60px auto
 </style>
