@@ -8,17 +8,29 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'Todos',
   computed: mapGetters({
     todos: 'getAllTodos'
   }),
+  methods: mapActions(['getAllTodos']),
   created () {
-    this.$store.dispatch('getAllTodos')
+    this.getAllTodos()
   }
 }
 </script>
 
-<style>
+<style lang="stylus">
+.todos
+  display: flex
+  flex-flow: row wrap
+  justify-content: space-around
+  .todo
+    flex: 1 1 25%
+    margin: 20px 20px
+    padding: 5px
+    border-radius: 15px
+    background: #41b883
 </style>
