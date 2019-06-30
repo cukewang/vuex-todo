@@ -29,7 +29,7 @@ export default {
 .todos
   display: flex
   flex-flow: row wrap
-  justify-content: space-around
+  justify-content: space-between
   .todo
     color: white
     flex: 1 1 25%
