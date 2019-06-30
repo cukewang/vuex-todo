@@ -18,6 +18,10 @@ const mutations = {
   },
   delete (state, id) {
     state.todos = state.todos.filter(todo => todo.id !== id)
+  },
+  update (state, updatedTodo) {
+    let index = state.todos.findIndex(todo => todo.id === updatedTodo.id)
+    state.todos.splice(index, 1, updatedTodo)
   }
 }
 const actions = {
@@ -41,6 +45,13 @@ const actions = {
       `http://jsonplaceholder.typicode.com/todos?_limit=${limit}`
     )
     commit('setTodos', res.data)
+  },
+  async updateTodo ({ commit }, updatedTodo) {
+    await axios.put(
+      `http://jsonplaceholder.typicode.com/todos/${updatedTodo.id}`,
+      updatedTodo
+    )
+    commit('update', updatedTodo)
   }
 }
 

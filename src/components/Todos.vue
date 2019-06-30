@@ -2,7 +2,13 @@
   <div>
     <h3>todos</h3>
     <div class="todos">
-      <div class="todo" v-for="todo in todos" :key="todo.index">
+      <div
+        class="todo"
+        v-for="todo in todos"
+        :key="todo.index"
+        :class="{'is-complate':todo.completed}"
+        @dblclick="switchCompleted(todo)"
+      >
         <div class="title">{{todo.title}}</div>
         <span class="fas fa-trash-alt" @click="deleteTodo(todo.id)"></span>
       </div>
@@ -18,7 +24,18 @@ export default {
   computed: mapGetters({
     todos: 'getAllTodos'
   }),
-  methods: mapActions(['getAllTodos', 'deleteTodo']),
+  methods: {
+    ...mapActions(['getAllTodos', 'deleteTodo', 'updateTodo']),
+    switchCompleted (todo) {
+      const updatedTodo = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed
+      }
+      // this.$store.dispatch("updateTodo", updatedTodo)
+      this.updateTodo(updatedTodo)
+    }
+  },
   created () {
     this.getAllTodos()
   }
@@ -44,4 +61,6 @@ export default {
       flex: 1
     .fas fa-trash-alt
       flex: 1
+  .is-complate
+    background: blue
 </style>
